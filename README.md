@@ -328,4 +328,4 @@ I have a Mac, but and I am 99% sure everything works on other platforms, follow 
     Forwarding from [::1]:8001 -> 80
     ```
 
-    ![Here is the app on 8001 in the browser](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/hello-world-nginx-portforward.png)
+    ![Here is the app on 8001 in the browser](assets/hello-world-nginx-portforward.png)
