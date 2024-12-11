@@ -297,3 +297,35 @@ I have a Mac, but and I am 99% sure everything works on other platforms, follow 
 
     ![Create application](assets/argo-create-application.png)
 
+17. Configure application
+
+    ![Configure hello-world](assets/argo-hello-world.png)
+
+18. Add the application using my git repository https://github.com/vfarah-if/localkubekindexercise
+
+    ![Healthy Hello World](assets/argo-helloworld-instances.png)
+
+19. And drilling into the logs
+
+    ![Instance logs](assets/argo-hello-world-logs.png)
+
+20. Check for hello world service by name which **hello-world-helloworld**
+
+    ```bash
+    ❯ kubectl get svc -n default
+    
+    NAME                     TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+    hello-world-helloworld   ClusterIP   10.96.232.221   <none>        80/TCP    14m
+    kubernetes               ClusterIP   10.96.0.1       <none>        443/TCP   4d9h
+    ```
+
+21. Do some **port forwarding** to get to hello world onto port 8001 locally
+
+    ```bash
+    ❯ kubectl port-forward -n default service/hello-world-helloworld 8001:80 &
+    [1] 85508
+    ~/Dev/localkubekindexercise on main !2 ?3 ❯ Forwarding from 127.0.0.1:8001 -> 80         at 01:50:53
+    Forwarding from [::1]:8001 -> 80
+    ```
+
+    ![Here is the app on 8001 in the browser](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/hello-world-nginx-portforward.png)
