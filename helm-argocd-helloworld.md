@@ -156,27 +156,27 @@
 
 14. **Login** to the system using this password on https://localhost:8000/applications using `admin` and password `dFxMNayT4N2w-zNp`
 
-    ![ArgoCd local login](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/argo-login.png)
+    ![ArgoCd local login](assets/argo-login.png)
 
 15. **Change the password** manually the first time to something you won't forget but we will get into how we can automate this using bash for the next exercise
 
-    ![Change password](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/argo-change-password.png)
+    ![Change password](assets/argo-change-password.png)
 
 16. And now you are ready to apply this repo to your local copy of **Argo**.
 
-    ![Create application](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/argo-create-application.png)
+    ![Create application](assets/argo-create-application.png)
 
 17. **Configure** application
 
-    ![Configure hello-world](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/argo-hello-world.png)
+    ![Configure hello-world](assets/argo-hello-world.png)
 
 18. Add the **application** using my git repository https://github.com/vfarah-if/localkubekindexercise
 
-    ![Healthy Hello World](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/argo-helloworld-instances.png)
+    ![Healthy Hello World](assets/argo-helloworld-instances.png)
 
 19. And **drilling** into the logs
 
-    ![Instance logs](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/argo-hello-world-logs.png)
+    ![Instance logs](assets/argo-hello-world-logs.png)
 
 20. Check for hello world service by name which **hello-world-helloworld**
 
@@ -198,5 +198,5 @@
     Forwarding from [::1]:8001 -> 80
     ```
 
-    ![Here is the app on 8001 in the browser](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/hello-world-nginx-portforward.png)
+    ![Here is the app on 8001 in the browser](assets/hello-world-nginx-portforward.png)
 
