@@ -1,0 +1,5 @@
+☐ Create a batch mechanism that can facilitate a docker deploy to ArgoCD to olay with getting @today
+	☐ Create a Helm Chart
+	☐ Create a docker to deploy as a repository
+	☐ Share this running in Argo
+☐ Add references for learning this, explore some videos and details for understanding how to expand on this @today
