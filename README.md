@@ -1,4 +1,4 @@
-# localkubekindexercise
+# Learn Kubernetes the kind way	
 
 [TOC]
 
