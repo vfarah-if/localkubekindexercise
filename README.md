@@ -44,7 +44,7 @@ The purpose of this exercise is to learn how to setup and use **kind** to genera
 
 ### Setup Helm and helloworld on Argocd
 
-The purpose of this is to learn and use helm with a deployment tool to understand how helm works and how you can deploy an app to this space. For more information read [here]().
+The purpose of this is to learn and use helm with a deployment tool to understand how helm works and how you can deploy an app to this space. For more information read [here](helm-argocd-helloworld.md).
 
 ### Setup a mock digital commerce platform
 
