@@ -58,7 +58,7 @@
    networkpolicy.networking.k8s.io/argocd-server-network-policy created
    ```
 
-7. Check if argo exists 
+7. Check if Argo **exists** 
 
    ````bash
    ❯ kubectl get svc -n argocd
@@ -74,10 +74,11 @@
    argocd-server-metrics                     ClusterIP      10.96.243.65    <none>        8083/TCP 
    ````
 
-8. List all the namespaces
+8. List all the **namespaces**
 
    ```bash
    ❯ kubectl get namespace
+   
    NAME                 STATUS   AGE
    argocd               Active   152m
    default              Active   2d19h
@@ -87,7 +88,7 @@
    local-path-storage   Active   2d19h
    ```
 
-9. Check the pods in the argo cd namespace
+9. Check the pods in the **argocd namespace**
 
    ```bash
    ❯ kubectl get pods -n argocd
@@ -118,7 +119,7 @@
     argocd-server-metrics                     ClusterIP      10.96.243.65    <none>        8083/TCP    
     ```
 
-11. Now do the port forwarding
+11. Now do the **port forwarding** to view it
 
     ```bash
     ❯ kubectl port-forward -n argocd service/argocd-server 8000:80 &
@@ -127,7 +128,7 @@
     Forwarding from [::1]:8000 -> 8080
     ```
 
-12. Get the argo CD secret 
+12. Get the Argo initial **admin secret** 
 
     ```bash
     ❯ kubectl get secrets argocd-initial-admin-secret -o yaml -n argocd
@@ -145,7 +146,7 @@
     type: Opaque
     ```
 
-13. Base decode the value
+13. **Base64 decode** the value
 
     ```bash
     ❯ echo -n 'ZEZ4TU5heVQ0TjJ3LXpOcA==' | base64 -d
@@ -153,27 +154,27 @@
     dFxMNayT4N2w-zNp
     ```
 
-14. Login to the system using this password on https://localhost:8000/applications using `admin` and password `dFxMNayT4N2w-zNp`
+14. **Login** to the system using this password on https://localhost:8000/applications using `admin` and password `dFxMNayT4N2w-zNp`
 
     ![ArgoCd local login](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/argo-login.png)
 
-15. Change the password manually the first time to something you won't forget but we will get into how we can automate this using bash for the next exercise
+15. **Change the password** manually the first time to something you won't forget but we will get into how we can automate this using bash for the next exercise
 
     ![Change password](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/argo-change-password.png)
 
-16. And now you are ready to apply this repo to your local copy of argo cd.
+16. And now you are ready to apply this repo to your local copy of **Argo**.
 
     ![Create application](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/argo-create-application.png)
 
-17. Configure application
+17. **Configure** application
 
     ![Configure hello-world](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/argo-hello-world.png)
 
-18. Add the application using my git repository https://github.com/vfarah-if/localkubekindexercise
+18. Add the **application** using my git repository https://github.com/vfarah-if/localkubekindexercise
 
     ![Healthy Hello World](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/argo-helloworld-instances.png)
 
-19. And drilling into the logs
+19. And **drilling** into the logs
 
     ![Instance logs](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/argo-hello-world-logs.png)
 
@@ -191,6 +192,7 @@
 
     ```bash
     ❯ kubectl port-forward -n default service/hello-world-helloworld 8001:80 &
+    
     [1] 85508
     ~/Dev/localkubekindexercise on main !2 ?3 ❯ Forwarding from 127.0.0.1:8001 -> 80         at 01:50:53
     Forwarding from [::1]:8001 -> 80
