@@ -39,7 +39,7 @@ I have a Mac, but and I am 99% sure everything works on other platforms, follow 
    ❯ brew install derailed/k9s/k9s
    ```
 
-   
+   ![k9 terminal in vscode](assets/k9-terminal.png)
 
 7. [Backstage](https://backstage.io/demos/) is an open source framework for building developer portals from *Spotify*.
 
