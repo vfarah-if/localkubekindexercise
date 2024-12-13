@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "Fabric.fullname" . }}
+  name: {{ include "fabric.fullname" . }}
   labels:
-    {{- include "Fabric.labels" . | nindent 4 }}
+    {{- include "fabric.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "Fabric.fullname" . }}
+    name: {{ include "fabric.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
