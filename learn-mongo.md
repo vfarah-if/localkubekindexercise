@@ -291,3 +291,7 @@
 - And in the end there was the answer to my problem - **admin:pass** is the credentials for express and I sure felt stupido :)
 
   ![Mongo Express on kind](assets/mongo-express.png)
+
+I now have a database to do my next exercise, around scaling out existing Docker files locally. I also used the k9s to start port forwarding using this, jumping into the shell and doing all the commands I was typing out above in a more simplistic way.
+
+![Mongo in a nutshell](assets/k9-mongo.png)
