@@ -72,7 +72,8 @@
    	deployment.apps/nginx-deployment configured
    
    ❯ kubectl get pods
-   	NAME                                READY   STATUS    RESTARTS   AGE
+   
+     NAME                                READY   STATUS    RESTARTS   AGE
    	nginx-deployment-54b9c68f67-7lfn8   1/1     Running   0          6s
    	nginx-deployment-54b9c68f67-h4sxh   1/1     Running   0          46h
    	nginx-deployment-54b9c68f67-p6jdv   1/1     Running   0          46h

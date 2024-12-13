@@ -53,13 +53,33 @@ I have a Mac, but and I am 99% sure everything works on other platforms, follow 
 
 The purpose of this exercise is to learn how to setup and use **kind** to generate a local kubernete stack. For more information see more [here](learn-kind.md).
 
+### Setup a Mongo on kind
+
+The purpose of this is to setup Mongo and Mongo Express on here for database usage going forward, to get it wrong and to debug how to get it right ... using everythign learnt in the first exercise. For more information see more [here](learn-mongo.md).
+
 ### Setup Helm and helloworld on Argocd
 
 The purpose of this is to learn and use helm with a deployment tool to understand how helm works and how you can deploy an app to this space. For more information read [here](helm-argocd-helloworld.md).
 
 ### Setup a mock digital commerce platform
 
-TODO
+The purpose of this is to be able to link up with an existing docker image and get it deployed to Argo. So this assumes you have setup the previous exercise, ready to use Helm and Argo. For more information read here.
+
+- Create **fabric, inventory and search** using helm as placeholders to get deployed to argo
+
+```bash
+❯ helm create Fabric
+
+Creating Fabric
+
+❯ helm create Inventory
+
+Creating Inventory
+
+❯ helm create Search
+
+Creating Search
+```
 
 ## References
 

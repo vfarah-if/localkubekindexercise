@@ -1,5 +1,13 @@
-☐ Create a batch mechanism that can facilitate a docker deploy to ArgoCD to olay with getting @today
-	☐ Create a Helm Chart
-	☐ Create a docker to deploy as a repository
-	☐ Share this running in Argo
-☐ Add references for learning this, explore some videos and details for understanding how to expand on this @today
+☐ Create a batch mechanism that can facilitate a docker deploy to ArgoCD to play with getting @today
+	✔ Create a Helm Chart @done(24-12-13 10:40)
+	✔ Create a docker to deploy as a repository @done(24-12-13 10:40)
+	✔ Share this running in Argo @done(24-12-13 10:40)
+☐ Create a Mongo and Mongo express setup to prepare databases for Fabric fun @critical
+	✔ Make sure you can connect to the database using Studio 3 or Mongoshell @done(24-12-13 09:27)
+	✔ Make sure you can see the mods hosting it and document this working @done(24-12-13 09:27)
+	✔ Move to its own readme @done(24-12-13 09:27)
+☐ Start on the Fabric journey and get it working in its entirety using the docker and dockerised environment variables to scale away @critical
+	☐ Get it working by loading up what is deployed to Argo and show it working
+	☐ Scale it out and then fire the Service Bus to see if it will work
+
+☐ Add references for learning this, explore some videos and details for understanding how to expand on this @high
