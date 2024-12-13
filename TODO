@@ -9,5 +9,4 @@
 ☐ Start on the Fabric journey and get it working in its entirety using the docker and dockerised environment variables to scale away @critical
 	☐ Get it working by loading up what is deployed to Argo and show it working
 	☐ Scale it out and then fire the Service Bus to see if it will work
-
-☐ Add references for learning this, explore some videos and details for understanding how to expand on this @high
+☐ Add references for learning this, explore some videos and details for understanding how to expand on this @high @started(24-12-13 11:11)
