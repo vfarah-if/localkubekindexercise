@@ -2,7 +2,7 @@
 
 - Asuming you still have this setup from the exercise before, otherwise just do the setup part
 
-  ![Kind-control-plane](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/kind-control-plane.png)
+  ![Kind-control-plane](assets/kind-control-plane.png)
 
 - Apply the YAML files using `kubectl` 
 
