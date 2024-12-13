@@ -53,15 +53,15 @@ I have a Mac, but and I am 99% sure everything works on other platforms, follow 
 
 The purpose of this exercise is to learn how to setup and use **kind** to generate a local kubernete stack. For more information see more [here](learn-kind.md).
 
-### Setup a Mongo on kind
+### 1. Setup a Mongo on kind
 
-The purpose of this is to setup Mongo and Mongo Express on here for database usage going forward, to get it wrong and to debug how to get it right ... using everythign learnt in the first exercise. For more information see more [here](learn-mongo.md).
+The purpose of this is to setup [Mongo](https://www.mongodb.com/blog/post/top-4-reasons-to-use-mongodb-8-0?tck=mdb80_blog_pencil_banner) and [Mongo Express](https://www.mongodb.com/resources/products/compatibilities/express) on here for database usage going forward, to get it wrong and to debug how to get it right ... using everything learnt in the first exercise. For more information see more [here](learn-mongo.md).
 
-### Setup Helm and helloworld on Argocd
+### 2. Setup Helm and helloworld on Argocd
 
 The purpose of this is to learn and use helm with a deployment tool to understand how helm works and how you can deploy an app to this space. For more information read [here](helm-argocd-helloworld.md).
 
-### Setup a mock digital commerce platform
+### 3. Setup a mock digital commerce platform
 
 The purpose of this is to be able to link up with an existing docker image and get it deployed to Argo. So this assumes you have setup the previous exercise, ready to use Helm and Argo. For more information read here.
 
