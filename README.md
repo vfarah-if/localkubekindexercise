@@ -103,9 +103,9 @@ Here’s a comprehensive list of high-quality references and resources for learn
 
 ### **Online Courses**
 
-1. [Helm for Kubernetes: Package Manager for Kubernetes](https://www.udemy.com/course/helm-for-kubernetes/) (Udemy)
-   - Practical course on using Helm effectively with Kubernetes clusters.
-2. [Kubernetes Package Management with Helm](https://www.pluralsight.com/courses/kubernetes-package-management-helm) (Pluralsight)
+1. [Helm for Kubernetes: Package Manager for Kubernetes](https://www.udemy.com/courses/search/?src=ukw&q=helm) (Udemy)
+   - Practical courses on using Helm effectively with Kubernetes clusters.
+2. [Kubernetes Package Management with Helm](https://www.pluralsight.com/search?q=helm) (Pluralsight)
    - Covers the Helm ecosystem and its integration with Kubernetes.
 
 ### **Free Tutorials**
