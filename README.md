@@ -214,8 +214,8 @@ Here’s a comprehensive list of high-quality references and resources for learn
    - A discussion forum for Kubernetes-related topics.
 3. [Docker Subreddit](https://www.reddit.com/r/docker/)
    - Community-driven troubleshooting and learning.
-4. [Helm GitHub Discussions](https://github.com/helm/helm/discussions)
-   - Official community hub for Helm questions and answers.
+4. [Helm GitHub Helm](https://github.com/helm)
+   - Official community hub for Helm samples and more.
 
 ------
 
