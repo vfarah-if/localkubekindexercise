@@ -8,7 +8,7 @@ The purpose of this repo is to share some fantastic tools for playing with Kuber
 
 So I discussed this with my lovely colleague, *Aditya Gundecha*, and he shared some lovely tools with all of us that I feel are a must have for any team wanting to get their hands dirty with Kubernetes locally, and other *devopsy* things. So this is a dedication to *Aditya*, who shared with me and now I want to pass on this with others in the open source spirit of learning.
 
-I have a Mac, but and I am 99% sure everything works on other platforms, follow the links
+I have a Mac, but I am 99% sure everything works on other platforms, follow the links ...
 
 ## Tools
 
