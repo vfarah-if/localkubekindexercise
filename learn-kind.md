@@ -82,7 +82,7 @@
    
    ```
 
-10. **Delete** this and cleanup 
+10. **Delete** this and cleanup
 
     ```bash
     ❯ kubectl delete -f deployment.yaml

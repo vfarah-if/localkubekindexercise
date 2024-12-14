@@ -61,25 +61,9 @@ The purpose of this is to setup [Mongo](https://www.mongodb.com/blog/post/top-4-
 
 The purpose of this is to learn and use helm with a deployment tool to understand how helm works and how you can deploy an app to this space. For more information read [here](helm-argocd-helloworld.md).
 
-### 4. Setup a mock digital commerce platform
+### 4. Setup a mock digital commerce platform to learn scaling
 
-The purpose of this is to be able to link up with an existing docker image and get it deployed to Argo. So this assumes you have setup the previous exercise, ready to use Helm and Argo. For more information read here.
-
-- Create **fabric, inventory and search** using helm as placeholders to get deployed to argo
-
-```bash
-❯ helm create Fabric
-
-Creating Fabric
-
-❯ helm create Inventory
-
-Creating Inventory
-
-❯ helm create Search
-
-Creating Search
-```
+The purpose of this is to be able to link up with an existing or one you create as a docker image and get it deployed to Argo. So this assumes you have setup the previous exercise, ready to use Helm and Argo. This is a **scaling** exercise and assumes you will setup a sample using a docker file and and a technology of your choise. For more information read [here](learn-scaling.md).
 
 ## References
 
@@ -87,28 +71,28 @@ Here’s a comprehensive list of high-quality references and resources for learn
 
 ------
 
-## **Helm**
+### **Helm**
 
-### **Official Documentation**
+#### **Official Documentation**
 
 1. Helm Documentation
    - Comprehensive, up-to-date official documentation to understand Helm concepts, commands, and best practices.
 
-### **Books**
+#### **Books**
 
 1. *"Managing Kubernetes with Helm"* by Matt Butcher et al.
    - A detailed guide to managing applications in Kubernetes using Helm.
 2. *"Helm Patterns"* by Matt Farina and Josh Dolitsky
    - Focuses on advanced patterns and techniques in Helm.
 
-### **Online Courses**
+#### **Online Courses**
 
 1. [Helm for Kubernetes: Package Manager for Kubernetes](https://www.udemy.com/courses/search/?src=ukw&q=helm) (Udemy)
    - Practical courses on using Helm effectively with Kubernetes clusters.
 2. [Kubernetes Package Management with Helm](https://www.pluralsight.com/search?q=helm) (Pluralsight)
    - Covers the Helm ecosystem and its integration with Kubernetes.
 
-### **Free Tutorials**
+#### **Free Tutorials**
 
 1. [Learn Helm Basics](https://helm.sh/docs/intro/using_helm/)
    - Step-by-step tutorial from the official Helm website.
@@ -117,23 +101,23 @@ Here’s a comprehensive list of high-quality references and resources for learn
 
 ------
 
-## **Kubernetes**
+### **Kubernetes**
 
-### **Official Documentation**
+#### **Official Documentation**
 
 1. [Kubernetes Docs](https://kubernetes.io/docs/)
    - Official, detailed documentation for all Kubernetes features and APIs.
 2. [Kubernetes Concepts](https://kubernetes.io/docs/concepts/)
    - Best for learning the architecture, objects, and principles behind Kubernetes.
 
-### **Books**
+#### **Books**
 
 1. *"Kubernetes Up & Running"* by Kelsey Hightower, Brendan Burns, Joe Beda
    - A must-read for practical Kubernetes implementation.
 2. *"The Kubernetes Book"* by Nigel Poulton
    - Excellent for beginners with clear explanations of Kubernetes concepts.
 
-### **Online Courses**
+#### **Online Courses**
 
 1. [Kubernetes for Absolute Beginners - Hands-on](https://www.udemy.com/course/learn-kubernetes/) (Udemy)
    - Beginner-friendly course to get hands-on experience.
@@ -142,7 +126,7 @@ Here’s a comprehensive list of high-quality references and resources for learn
 3. [Kubernetes on Google Cloud](https://www.coursera.org/learn/google-kubernetes-engine) (Coursera)
    - Explores Kubernetes using Google Cloud’s GKE.
 
-### **Free Tutorials**
+#### **Free Tutorials**
 
 1. [Play with Kubernetes](https://labs.play-with-k8s.com/)
    - Interactive environment for Kubernetes exploration.
@@ -153,23 +137,23 @@ Here’s a comprehensive list of high-quality references and resources for learn
 
 ------
 
-## **Docker**
+### **Docker**
 
-### **Official Documentation**
+#### **Official Documentation**
 
 1. [Docker Docs](https://docs.docker.com/)
    - Complete reference for Docker installation, setup, and usage.
 2. [Docker CLI Reference](https://docs.docker.com/engine/reference/commandline/docker/)
    - In-depth documentation of all Docker commands.
 
-### **Books**
+#### **Books**
 
 1. *"Docker Deep Dive"* by Nigel Poulton
    - A great resource for mastering Docker concepts and commands.
 2. *"Docker in Practice"* by Ian Miell and Aidan Hobson Sayers
    - Provides advanced practical use cases for Docker.
 
-### **Online Courses**
+#### **Online Courses**
 
 1. [Docker Mastery: With Kubernetes + Swarm](https://www.udemy.com/course/docker-mastery/) (Udemy)
    - Comprehensive course for learning Docker with Kubernetes.
@@ -178,7 +162,7 @@ Here’s a comprehensive list of high-quality references and resources for learn
 3. [Docker for DevOps](https://www.udemy.com/course/docker-tutorial-for-devops/) (Udemy)
    - Focuses on Docker in the context of DevOps workflows.
 
-### **Free Tutorials**
+#### **Free Tutorials**
 
 1. [Docker Labs](https://dockerlabs.collabnix.com/)
    - Open-source repository for Docker learning labs and guides.
@@ -189,7 +173,7 @@ Here’s a comprehensive list of high-quality references and resources for learn
 
 ------
 
-## **YouTube Channels & Playlists**
+### **YouTube Channels & Playlists**
 
 1. **TechWorld with Nana**
    - Covers Kubernetes, Helm, and Docker with practical examples.
@@ -206,7 +190,7 @@ Here’s a comprehensive list of high-quality references and resources for learn
 
 ------
 
-## **Community Resources**
+### **Community Resources**
 
 1. [CNCF Slack](https://slack.cncf.io/)
    - Community of Kubernetes, Helm, and Docker enthusiasts.
@@ -219,4 +203,3 @@ Here’s a comprehensive list of high-quality references and resources for learn
 
 ------
 
-This list should keep you busy for a while! Let me know if you'd like help exploring any of these resources in detail. 😊
