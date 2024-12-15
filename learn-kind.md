@@ -6,14 +6,16 @@
 
    ```bash
    ❯ kubectl cluster-info --context kind-kind
-   Kubernetes control plane is running at https://127.0.0.1:49369
-   CoreDNS is running at https://127.0.0.1:49369/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+   
+     Kubernetes control plane is running at https://127.0.0.1:49369
+     CoreDNS is running at https://127.0.0.1:49369/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
    ```
 
 3. Above I installed docker so here is a query on docker for seeing this
 
    ```bash
    ❯  docker exec -it kind-control-plane crictl images
+   
    registry.k8s.io/etcd                            3.5.15-0             27e3830e14027       66.5MB
    registry.k8s.io/kube-apiserver-arm64            v1.31.2              7db5e8fdce19a       92.6MB
    registry.k8s.io/kube-apiserver                  v1.31.2              7db5e8fdce19a       92.6MB
@@ -30,6 +32,7 @@
 
    ```bash
    ❯ kubectl apply -f deployment.yaml
+   
    deployment.apps/nginx-deployment created
    ```
 
@@ -37,6 +40,7 @@
 
    ```bash
    ❯ kubectl get pods
+   
    NAME                                READY   STATUS    RESTARTS   AGE
    nginx-deployment-54b9c68f67-h4sxh   1/1     Running   0          83s
    nginx-deployment-54b9c68f67-p6jdv   1/1     Running   0          83s
@@ -47,18 +51,20 @@
 
    ```bash
    ❯ kubectl port-forward nginx-deployment-54b9c68f67-h4sxh 8000:80
-   Forwarding from 127.0.0.1:8000 -> 80
-   Forwarding from [::1]:8000 -> 80
+   
+     Forwarding from 127.0.0.1:8000 -> 80
+     Forwarding from [::1]:8000 -> 80
    ```
 
 7. **Browse** to this and remember as soon as you close that session, port forwading will dissapear
 
-   ![Port forwarded browser](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/nginx-in-browser.png)
+   ![Port forwarded browser](assets/nginx-in-browser.png)
 
 8. **Query** the pods
 
    ```bash
    ❯ kubectl get pods
+   
    NAME                                READY   STATUS    RESTARTS   AGE
    nginx-deployment-54b9c68f67-h4sxh   1/1     Running   0          83s
    nginx-deployment-54b9c68f67-p6jdv   1/1     Running   0          83s
@@ -69,7 +75,8 @@
 
    ```
    ❯ kubectl apply -f deployment.yaml
-   	deployment.apps/nginx-deployment configured
+   
+     deployment.apps/nginx-deployment configured
    
    ❯ kubectl get pods
    
@@ -86,14 +93,15 @@
 
     ```bash
     ❯ kubectl delete -f deployment.yaml
-    deployment.apps "nginx-deployment" deleted
+      
+      deployment.apps "nginx-deployment" deleted
     ```
 
 11. **Check** there are no pods
 
     ```bash
     ❯ kubectl get pods
-    No resources found in default namespace.
+    
+      No resources found in default namespace.
     ```
 
-### 

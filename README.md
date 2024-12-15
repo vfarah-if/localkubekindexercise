@@ -63,7 +63,7 @@ The purpose of this is to learn and use helm with a deployment tool to understan
 
 ### 4. Setup a mock digital commerce platform to learn scaling
 
-The purpose of this is to be able to link up with an existing or one you create as a docker image and get it deployed to Argo. So this assumes you have setup the previous exercise, ready to use Helm and Argo. This is a **scaling** exercise and assumes you will setup a sample using a docker file and and a technology of your choise. For more information read [here](learn-scaling.md).
+The purpose of this is to be able to link up with any existing apps you developed to scale them up and use the in Argo or kubernetes to do performance testing locally. So this assumes you have setup the previous exercise, ready to use Helm and Argo as a culmination of all of the skills processed so far. This is a **scaling** exercise and assumes you will setup a sample using a docker file and and a technology of your choice. Argo allows you to overide environment variables or anything through the values file. I could not attach my examples because of work confidentiality and decided to use docker images that built environment variable values using .env values locally. For more information read [here](learn-scaling.md).
 
 ## References
 

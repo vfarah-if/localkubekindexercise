@@ -99,13 +99,14 @@ Creating search
 
       ```bash
       ❯ kubectl get pods
+      
       NAME                                      READY   STATUS    RESTARTS      AGE
       fabric-7494f79556-vlt54                   0/1     Running   4 (16s ago)   2m17s
       ```
 
     - I had an issue with my real work microservice as there was something making it fail, probably unable to connect to a database or something it needed in the real world.
 
-      ![Fabric Crash Loop](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/fabric-crashloop-state.png)
+      ![Fabric Crash Loop](assets/fabric-crashloop-state.png)
 
   - **Scale up** the [replicasets](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/) from 1 o 3 within the `values.yaml` file
 
@@ -114,14 +115,75 @@ Creating search
     replicaCount: 3
     ```
 
-  - Deploy with Argo by configuring it with 
+  - Deploy with Argo by configuring it with these settings and my sample repository 
 
     ![DCP Fabric Microservice scaled up settings](assets/argo-fabric.png)
 
-    ![Scaled Services](/Users/Vincent.Farah/Dev/localkubekindexercise/assets/argo-scaledservices.png)
+    ![Scaled Services](assets/argo-scaledservices.png)
 
     - Check loggings through replicasets or **rs** for aggregated logging or on a specific instance to see the logs under a specific pod instance
 
       ![k9 scaled](assets/k9-scaledup-pods.png)
 
+- What are **real world problems** I experienced to cause crashes that was not a problem in docker
+
+  - Ensure that all **environment variables** required for the microservice are correctly passed to the pod `kubectl exec -it <pod-name> -- printenv` . My example had all of this built into the docker image built because I didn't want to expose secrets in environment variables.
+
+    ```bash
+    ❯ kubectl exec -it fabric-577d6d474f-jv79s -- printenv
+    
+    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    HOSTNAME=fabric-577d6d474f-jv79s
+    APP_UID=1654
+    ASPNETCORE_HTTP_PORTS=8080
+    DOTNET_RUNNING_IN_CONTAINER=true
+    DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true
+    DOTNET_VERSION=8.0.6
+    ASPNET_VERSION=8.0.6
+    ...
+    ```
+
+  - Check networking for things like azure or databases. In my issue above I could see Azure Event Hubs was being disconnected for some reason, it requiring an outbound internet access. In a local Kubernetes setup (like `kind`), networking issues could arise.
+
+    - **Verify DNS Resolution**: Ensure the pod can resolve e.g. Azure endpoints
+
+      ```bash
+      ❯ kubectl exec -it <pod-name> -- nslookup <your-eventhub-namespace>.servicebus.windows.net
       
+      
+      ❯ kubectl exec -it <pod-name> -- wget -v https://dcp-poc-uks-01.servicebus.windows.net
+      
+      --2024-12-14 15:56:40--  https://<your-eventhub-namespace>.servicebus.windows.net/
+      Resolving dcp-poc-uks-01.servicebus.windows.net (dcp-poc-uks-01.servicebus.windows.net)... 20.90.128.129
+      Connecting to dcp-poc-uks-01.servicebus.windows.net (dcp-poc-uks-01.servicebus.windows.net)|20.90.128.129|:443... connected.
+      HTTP request sent, awaiting response... 200 OK
+      ```
+
+  - **Authentication issues**: 
+
+    - Ensure the appropriate credentials are mounted or configured in the pod.
+
+    - Test authentication from inside the pod:
+
+      ```
+      ❯ kubectl exec -it <pod-name> -- bash
+      ❯ dotnet run -- test-eventhub-connection
+      ```
+
+  - Consider any potential differences between your **Docker and Kubernetes** environments
+
+    - Docker might have direct internet access, while Kubernetes may be behind a network proxy
+
+    - Kubernetes might enforce stricter resource limits. Check if your container is running out of memory or CPU:
+
+      ```bash
+      ❯ kubectl describe pod <pod-name>
+      ```
+
+  - Run a temporary pod with debugging tools to isolate the issue
+
+    ```bash
+    ❯ kubectl run debug-pod --image=mcr.microsoft.com/dotnet/runtime-deps:6.0 --restart=Never -- bash
+    ```
+
+  - TODO: Final resolution and summary
