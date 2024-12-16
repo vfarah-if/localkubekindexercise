@@ -89,13 +89,13 @@ resources: {}
 livenessProbe:
   initialDelaySeconds: 30
   httpGet:
-    path: /
-    port: http
+    path: /api/health
+    port: 5001
 readinessProbe:
   initialDelaySeconds: 30
   httpGet:
-    path: /
-    port: http
+    path: /api/health
+    port: 5001
 
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:

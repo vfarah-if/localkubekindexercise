@@ -74,6 +74,38 @@ Creating search
     imagePullPolicy: {{ .Values.image.pullPolicy }}
   ```
 
+- In my case I had to expose `port 5001` to the outside tense, but this is not necessary for you
+
+  ```yaml
+apiVersion: v1
+  kind: Service
+  metadata:
+    name: {{ include "fabric.fullname" . }}
+    labels:
+      {{- include "fabric.labels" . | nindent 4 }}
+  spec:
+    type: {{ .Values.service.type }}
+    ports:
+      - port: {{ .Values.service.port }}
+        targetPort: 5001
+  ```
+  
+  and I extended my live probe and readiness to be based on a micriservice health endpoint
+  
+  ```yaml
+  livenessProbe:
+  initialDelaySeconds: 60
+    httpGet:
+    path: /api/health
+      port: 5001
+  readinessProbe:
+    initialDelaySeconds: 60
+    httpGet:
+      path: /api/health
+      port: 5001
+
+  ```
+
 - Deploy can be done with helm charts or Argo
 
   - Deploy the helm chart
@@ -186,4 +218,8 @@ Creating search
     ❯ kubectl run debug-pod --image=mcr.microsoft.com/dotnet/runtime-deps:6.0 --restart=Never -- bash
     ```
 
-  - TODO: Final resolution and summary
+  - My issue was related to exposing a health check endpoint to the outside, only understood when I tried to shell into it
+  
+    ![Health Scaled 3 pod cluster](assets/argo-fabric-healthy.png)
+  
+  
