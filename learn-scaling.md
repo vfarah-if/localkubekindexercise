@@ -2,6 +2,8 @@
 
 - Create **fabric, inventory and search** using helm as placeholders to get this deployed to your local *Argo*. This will start with fabric, a name place holder for a real microservice that gets deployed to docker using docker compose locally, and you can do the same with the inventory and search microservice. For the purpose of brevity, fabric will only be discussed and you simply do the same with inventory and search.
 
+### Fabric
+
 ```bash
 ❯ helm create fabric
 
@@ -214,6 +216,8 @@ Creating fabric
 
     ![Health Scaled 3 pod cluster](assets/argo-fabric-healthy.png)
 
+  ### Inventory
+
 - Now do the same for inventory, updating the settings and configuring argo with a replicates of 3
 
   ```bash
@@ -246,7 +250,98 @@ Creating fabric
     Image: "digital-dcp-integration-inventory.console:latest" with ID "sha256:5e8fb251b4eec6f7060a76d4d05e7a11d43bd60b35a1847606e328aa460d032f" found to be already present on all nodes.
     ```
 
-  #### 
+  - Your Helm chart needs to point to this local image. Edit `values.yaml` and ensure the image repository and tag match the local image name and tag:
+
+    ```yaml
+    image:
+      repository: digital-dcp-integration-inventory.console
+      tag: latest
+      pullPolicy: IfNotPresent  # Avoid pulling from a registry
+    ```
+
+  - In my case I had to expose `port 5000` to the outside tense, but this is not necessary for you
+
+    ```yaml
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: {{ include "inventory.fullname" . }}
+      labels:
+        {{- include "inventory.labels" . | nindent 4 }}
+    spec:
+      type: {{ .Values.service.type }}
+      ports:
+        - port: {{ .Values.service.port }}
+          targetPort: 5000
+    ```
+
+    and I extended my live probe and readiness to be based on a microservice health endpoint
+
+    ```yaml
+    livenessProbe:
+    initialDelaySeconds: 15
+      httpGet:
+      path: /api/health
+        port: 5001
+    readinessProbe:
+      initialDelaySeconds: 15
+      httpGet:
+        path: /api/health
+        port: 5001
+    
+    ```
+
+  - Deploy can be done with helm charts or Argo
+
+    - Deploy the helm chart
+
+      ```bash
+      ❯ helm install inventory ./inventory
+      
+      NAME: inventory
+      LAST DEPLOYED: Mon Dec 16 19:23:51 2024
+      NAMESPACE: default
+      STATUS: deployed
+      REVISION: 1
+      ```
+
+      - Verify the deployment
+
+        ```bash
+        ❯ kubectl get pods
+        
+        NAME                                      READY   STATUS    RESTARTS      AGE
+        inventory-79ff874f9-c96fg                 1/1     Running   0             43s
+        ```
+
+      - **Scale up** the [replicasets](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/) from 1 o 3 within the `values.yaml` file
+
+        ```
+        ❯ helm uninstall inventory ./inventory
+        release "inventory" uninstalled
+        Error: uninstall: Release name is invalid: ./inventory
+        ```
+
+        ```yaml
+        # https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+        replicaCount: 3
+        ```
+
+      - Helm install again with 3 replicas
+
+      - Deploy with Argo by configuring it with these settings and my sample repository 
+
+        ![Create inventory app](assets/argo-create-inventory.png)
+
+      - Show it all up and running and synchronised
+
+        ![Scaled inventory](assets/argo-inventory-scaled.png)
+
+      - Start playing around and logging inventory being created e.g. data portforwarding my express instance loading up data in MongoDb
+
+        ![Inventory in express](assets/mongo-express-inventory.png)
+
+  ### Search
 
 - Now do the same for search, updating settings and configuring argo with a replica set of 3
 
