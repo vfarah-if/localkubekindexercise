@@ -6,14 +6,6 @@
 ❯ helm create fabric
 
 Creating fabric
-
-❯ helm create inventory
-
-Creating inventory
-
-❯ helm create search
-
-Creating search
 ```
 
 #### Use `kind` to Load the Local Docker Image
@@ -77,7 +69,7 @@ Creating search
 - In my case I had to expose `port 5001` to the outside tense, but this is not necessary for you
 
   ```yaml
-apiVersion: v1
+  apiVersion: v1
   kind: Service
   metadata:
     name: {{ include "fabric.fullname" . }}
@@ -89,9 +81,9 @@ apiVersion: v1
       - port: {{ .Values.service.port }}
         targetPort: 5001
   ```
-  
+
   and I extended my live probe and readiness to be based on a micriservice health endpoint
-  
+
   ```yaml
   livenessProbe:
   initialDelaySeconds: 60
@@ -103,7 +95,7 @@ apiVersion: v1
     httpGet:
       path: /api/health
       port: 5001
-
+  
   ```
 
 - Deploy can be done with helm charts or Argo
@@ -219,7 +211,35 @@ apiVersion: v1
     ```
 
   - My issue was related to exposing a health check endpoint to the outside, only understood when I tried to shell into it
-  
+
     ![Health Scaled 3 pod cluster](assets/argo-fabric-healthy.png)
+
+- Now do the same for inventory, updating the settings and configuring argo with a replicates of 3
+
+  ```bash
+  ❯ helm create inventory
   
+  Creating inventory
+  ```
+
   
+
+- Now do the same for search, updating settings and configuring argo with a replica set of 3
+
+  ```bash
+  ❯ helm create search
+  
+  Creating search
+  ```
+
+- How to update the project when things change in a simplistic way
+
+  1. Update all the local docker images onto kind
+  2. Reinstall all the images
+  3. Setup argo so that deploying it makes it regenerate
+  4. Make sure you have logging in the application to understand that you are deploying the latest
+  5. Use tools to make things easier for your self and try to simplify the process to one click if possible 
+
+## Conclusion
+
+This exercise was to help me scale up my project locally to get some timings and see if it was all working. This really helped me 
