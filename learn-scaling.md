@@ -347,18 +347,119 @@ Creating fabric
 
   ```bash
   ❯ helm create search
-  
-  Creating search
   ```
+
+  - Build an image using `docker-compose` or `docker build` 
+
+    ```bash
+    ❯ docker-compose build search.console
+    ```
+
+  - Load the image into your `kind` cluster and update any changes pushed to docker using this line
+
+    ```bash
+    ❯ kind load docker-image digital-dcp-integration-search.console:latest
+    
+    Image: "digital-dcp-integration-inventory.console:latest" with ID "sha256:5e8fb251b4eec6f7060a76d4d05e7a11d43bd60b35a1847606e328aa460d032f" not yet present on node "kind-control-plane", loading...
+    ```
+
+  - Verify the image is now available in the `kind` cluster
+
+    ```bash
+    ❯ kind load docker-image digital-dcp-integration-inventory.console:latest
+    
+    Image: "digital-dcp-integration-inventory.console:latest" with ID "sha256:5e8fb251b4eec6f7060a76d4d05e7a11d43bd60b35a1847606e328aa460d032f" found to be already present on all nodes.
+    ```
+
+  - Your Helm chart needs to point to this local image. Edit `values.yaml` and ensure the image repository and tag match the local image name and tag:
+
+    ```yaml
+    image:
+      repository: digital-dcp-integration-search.console
+      tag: latest
+      pullPolicy: IfNotPresent  # Avoid pulling from a registry
+    ```
+
+  - In my case I had to expose `port 5002` to the outside tense, but this is not necessary for you
+
+    ```yaml
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: {{ include "search.fullname" . }}
+      labels:
+        {{- include "search.labels" . | nindent 4 }}
+    spec:
+      type: {{ .Values.service.type }}
+      ports:
+        - port: {{ .Values.service.port }}
+          targetPort: 5002
+    ```
+
+    and I extended my live probe and readiness to be based on a microservice health endpoint
+
+    ```yaml
+    livenessProbe:
+    initialDelaySeconds: 15
+      httpGet:
+      path: /api/health
+        port: 5002
+    readinessProbe:
+      initialDelaySeconds: 15
+      httpGet:
+        path: /api/health
+        port: 5002
+    ```
+
+  - Deploy can be done with helm charts or Argo
+
+    - Deploy the helm chart
+
+      ```bash
+      ❯ helm install search ./search
+      ```
+
+      - **Scale up** the [replicasets](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/) from 1 o 3 within the `values.yaml` file
+
+        ```
+        ❯ helm uninstall inventory ./inventory
+        release "inventory" uninstalled
+        Error: uninstall: Release name is invalid: ./inventory
+        ```
+
+        ```yaml
+        # https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+        replicaCount: 3
+        ```
+
+      - Helm install again with 3 replicas
+
+      - Deploy with Argo by configuring it with these settings and my sample repository 
 
 - How to update the project when things change in a simplistic way
 
   1. Update all the local docker images onto kind
+
+     ```bash
+     ❯ kind load docker-image digital-dcp-integration-fabric.console:latest
+     ❯ kind load docker-image digital-dcp-integration-inventory.console:latest
+     ❯ kind load docker-image digital-dcp-integration-search.console:latest
+     ```
+
   2. Reinstall all the images
+
+     ```bash
+     ❯ helm upgrade fabric ./fabric
+     ❯ helm upgrade inventory ./inventory
+     ❯ helm upgrade search ./search
+     ```
+
   3. Setup argo so that deploying it makes it regenerate
+
   4. Make sure you have logging in the application to understand that you are deploying the latest
+
   5. Use tools to make things easier for your self and try to simplify the process to one click if possible 
 
 ## Conclusion
 
-This exercise was to help me scale up my project locally to get some timings and see if it was all working. This really helped me 
+This exercise was to help me scale up my project locally to get some timings and see if it was all working. This really helped me refresh stuff I forgot or didn't know. When I started scaling up, argo became very useless so I would stick with not using Argo and just use k9s - less clumsy
