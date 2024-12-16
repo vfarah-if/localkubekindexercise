@@ -438,7 +438,7 @@ Creating fabric
 
 - How to update the project when things change in a simplistic way
 
-  1. Update all the local docker images onto kind
+  1. Update all the local docker images onto kind after having docker composed everything locally
 
      ```bash
      ❯ kind load docker-image digital-dcp-integration-fabric.console:latest
@@ -454,12 +454,10 @@ Creating fabric
      ❯ helm upgrade search ./search
      ```
 
-  3. Setup argo so that deploying it makes it regenerate
+  3. Use tools to make things easier for your self and try to simplify the process to one click if possible 
 
-  4. Make sure you have logging in the application to understand that you are deploying the latest
-
-  5. Use tools to make things easier for your self and try to simplify the process to one click if possible 
+     - Use k9s to show argo or view windows as argo bottles 
 
 ## Conclusion
 
-This exercise was to help me scale up my project locally to get some timings and see if it was all working. This really helped me refresh stuff I forgot or didn't know. When I started scaling up, argo became very useless so I would stick with not using Argo and just use k9s - less clumsy
+This exercise was to help me scale up my project locally to get some timings and see if it was all working. This really helped me refresh stuff I forgot or didn't know. When I started scaling up, Argo crashed and could not deal with kind loads, so I would stick with not using Argo and just use k9s - less clumsy with load.
