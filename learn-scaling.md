@@ -222,7 +222,31 @@ Creating fabric
   Creating inventory
   ```
 
-  
+  - Build an image using `docker-compose` or `docker build` 
+
+    ```bash
+    ❯ docker-compose build inventory.console
+    or
+    ❯ docker build -t digital-dcp-integration-inventory.console:latest .
+    ```
+
+  - Load the image into your `kind` cluster and update any changes pushed to docker using this line
+
+    ```bash
+    ❯ kind load docker-image digital-dcp-integration-inventory.console:latest
+    
+    Image: "digital-dcp-integration-inventory.console:latest" with ID "sha256:5e8fb251b4eec6f7060a76d4d05e7a11d43bd60b35a1847606e328aa460d032f" not yet present on node "kind-control-plane", loading...
+    ```
+
+  - Verify the image is now available in the `kind` cluster
+
+    ```bash
+    ❯ kind load docker-image digital-dcp-integration-inventory.console:latest
+    
+    Image: "digital-dcp-integration-inventory.console:latest" with ID "sha256:5e8fb251b4eec6f7060a76d4d05e7a11d43bd60b35a1847606e328aa460d032f" found to be already present on all nodes.
+    ```
+
+  #### 
 
 - Now do the same for search, updating settings and configuring argo with a replica set of 3
 
