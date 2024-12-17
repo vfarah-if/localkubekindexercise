@@ -441,21 +441,22 @@ Creating fabric
   1. Update all the local docker images onto kind after having docker composed everything locally
 
      ```bash
-     ❯ kind load docker-image digital-dcp-integration-fabric.console:latest
-     ❯ kind load docker-image digital-dcp-integration-inventory.console:latest
-     ❯ kind load docker-image digital-dcp-integration-search.console:latest
+     kind load docker-image digital-dcp-integration-fabric.console:latest
+     kind load docker-image digital-dcp-integration-inventory.console:latest
+     kind load docker-image digital-dcp-integration-search.console:latest
      ```
 
   2. Reinstall all the images
 
      ```bash
-     ❯ helm upgrade fabric ./fabric
-     ❯ helm upgrade inventory ./inventory
-     ❯ helm upgrade search ./search
+     cd charts/dcp
+     helm upgrade fabric ./fabric
+     helm upgrade inventory ./inventory
+     helm upgrade search ./search
      ```
-
+  
   3. Use tools to make things easier for your self and try to simplify the process to one click if possible 
-
+  
      - Use k9s to show argo or view windows as argo bottles 
 
 ## Conclusion
