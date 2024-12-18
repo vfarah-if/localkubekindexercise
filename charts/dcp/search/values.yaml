@@ -11,6 +11,10 @@ image:
   tag: latest
   pullPolicy: IfNotPresent  # Avoid pulling from a registry
 
+env:
+  InventoryApiUrl: http://inventory.default.svc.cluster.local
+  FabricApiUrl: http://fabric.default.svc.cluster.local
+
 # This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 # This is to override the chart name.

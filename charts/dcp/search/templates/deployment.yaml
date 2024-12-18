@@ -30,7 +30,7 @@ spec:
       serviceAccountName: {{ include "search.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      containers:
+      containers:	  
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -40,6 +40,11 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          env:
+            {{- range $key, $val := .Values.env }}
+            - name: "{{ $key }}"
+              value: {{ $val | squote}}
+            {{- end }} 		    
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
