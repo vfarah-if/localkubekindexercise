@@ -436,6 +436,71 @@ Creating fabric
 
       - Deploy with Argo by configuring it with these settings and my sample repository 
 
+- Overiding environment variables
+
+  - Search had a need to access the Api Urls of the other two microservices:
+
+    ```yaml
+    # values.yaml
+    env:
+      InventoryApiUrl: http://inventory.default.svc.cluster.local
+      FabricApiUrl: http://fabric.default.svc.cluster.local
+    
+    # deployment.yaml
+    spec:
+      template:
+        spec:
+          containers:
+            - name: your-container-name
+              image: your-image
+              env:
+                {{- range $key, $val := .Values.env }}
+                - name: "{{ $key }}"
+                  value: {{ $val | squote}}
+                {{- end }} 		    
+    
+    ```
+  
+  - Finally check these values are being assigned to the environment variables
+  
+    ```bash
+    kubectl exec <pod-name> -- printenv | grep InventoryApiUrl
+    ```
+  
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      creationTimestamp: '2024-12-19T06:06:47Z'
+      generateName: search-6995856b7b-
+      labels:
+        app.kubernetes.io/instance: search
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: search
+        app.kubernetes.io/version: 1.16.0
+        helm.sh/chart: search-0.1.0
+        pod-template-hash: 6995856b7b
+      name: search-6995856b7b-wvwb2
+      namespace: default
+      ownerReferences:
+        - apiVersion: apps/v1
+          blockOwnerDeletion: true
+          controller: true
+          kind: ReplicaSet
+          name: search-6995856b7b
+          uid: 5090a2cb-5a0c-4bb0-b9e2-ba550e03ab37
+      resourceVersion: '718228'
+      uid: db8e179e-4828-4c54-999f-fe85118ef6c4
+    spec:
+      containers:
+        - env:
+            - name: FabricApiUrl
+              value: http://fabric.default.svc.cluster.local
+            - name: InventoryApiUrl
+              value: http://inventory.default.svc.cluster.local
+          image: digital-dcp-integration-search.console:latest
+    ```
+  
 - How to update the project when things change in a simplistic way
 
   1. Update all the local docker images onto kind after having docker composed everything locally
@@ -454,9 +519,9 @@ Creating fabric
      helm upgrade inventory ./inventory
      helm upgrade search ./search
      ```
-  
+
   3. Use tools to make things easier for your self and try to simplify the process to one click if possible 
-  
+
      - Use k9s to show argo or view windows as argo bottles 
 
 ## Conclusion
