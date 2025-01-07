@@ -124,6 +124,8 @@ By default, kind creates a **single-node cluster**, but you can modify your clus
 
    To add more worker nodes, modify the config file again and recreate the cluster with `kind create cluster --config kind-config.yaml`.
 
+   Finally, redo all the steps in 2 to 4, above just setting up Argo and the scaling as expected and see if the performance is as expected.
+
 ## Kind vs Minikube
 
 **Kind** and **Minikube** are both tools for running Kubernetes clusters locally, but they serve different purposes and have distinct characteristics. Here's a detailed comparison:
