@@ -65,6 +65,65 @@ The purpose of this is to learn and use helm with a deployment tool to understan
 
 The purpose of this is to be able to link up with any existing apps you developed to scale them up and use the in Argo or kubernetes to do performance testing locally. So this assumes you have setup the previous exercise, ready to use Helm and Argo as a culmination of all of the skills processed so far. This is a **scaling** exercise and assumes you will setup a sample using a docker file and and a technology of your choice. Argo allows you to overide environment variables or anything through the values file. I could not attach my examples because of work confidentiality and decided to use docker images that built environment variable values using .env values locally. For more information read [here](learn-scaling.md).
 
+By default, kind creates a **single-node cluster**, but you can modify your cluster configuration to scale it up with multiple worker nodes.Now go back and redo everything again scaling up kind with https://mcvidanagama.medium.com/set-up-a-multi-node-kubernetes-cluster-locally-using-kind-eafd46dd63e5 and all the negative scaling issues should disappear in the negative summary.
+
+### 4.1 Steps to Add Multiple Worker Nodes to a kind Cluster
+
+1. **Create or Edit Your Cluster Configuration** Create or edit your kind configuration file to define multiple worker nodes. You will define your cluster in a YAML file, specifying the number of worker nodes.
+
+   Example `kind-config.yaml`:
+
+   ```yaml
+   kind: Cluster
+   apiVersion: kind.x-k8s.io/v1alpha4
+   nodes:
+     - role: control-plane
+     - role: worker
+     - role: worker
+     - role: worker
+   ```
+
+   **Create or Upgrade the Cluster** Use the kind CLI to create a new cluster or apply the configuration to your existing cluster. If you’re upgrading an existing cluster, you may want to delete the current one first, then recreate it with the new configuration.
+
+   - To **delete** and recreate the cluster:
+
+     ```bash
+     ❯ kind delete cluster
+     ❯ kind create cluster --config kind-config.yaml --name kind
+     
+     Creating cluster "kind" ...
+      ✓ Ensuring node image (kindest/node:v1.32.0) 🖼 
+      ✓ Preparing nodes 📦 📦 📦 📦  
+      ✓ Writing configuration 📜 
+      ✓ Starting control-plane 🕹️ 
+      ✓ Installing CNI 🔌 
+      ✓ Installing StorageClass 💾 
+      ✓ Joining worker nodes 🚜 
+     Set kubectl context to "kind-kind"
+     You can now use your cluster with:
+     kubectl cluster-info --context kind-kind
+     
+     Thanks for using kind! 😊
+     ```
+
+   **Verify the Cluster** After creating the cluster with multiple worker nodes, verify the nodes in your cluster:
+
+   ```bash
+   ❯ kubectl get nodes
+   
+   NAME                 STATUS   ROLES           AGE     VERSION
+   kind-control-plane   Ready    control-plane   3m47s   v1.32.0
+   kind-worker          Ready    <none>          3m30s   v1.32.0
+   kind-worker2         Ready    <none>          3m30s   v1.32.0
+   kind-worker3         Ready    <none>          3m30s   v1.32.0
+   ```
+
+   This will list all the nodes, showing the control-plane and worker nodes.
+
+   **Scaling the Cluster** You can scale your cluster dynamically by adding or removing worker nodes via the kind CLI. However, to remove nodes from an existing cluster, you'll need to modify the config and recreate the cluster. **Kind** does not support resizing clusters on-the-fly in the way that cloud providers' managed Kubernetes services do.
+
+   To add more worker nodes, modify the config file again and recreate the cluster with `kind create cluster --config kind-config.yaml`.
+
 ## Kind vs Minikube
 
 **Kind** and **Minikube** are both tools for running Kubernetes clusters locally, but they serve different purposes and have distinct characteristics. Here's a detailed comparison:
