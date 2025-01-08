@@ -516,6 +516,7 @@ Creating fabric
   
      ```bash
      cd charts/dcp
+     # If this is a clean setup...
      helm install fabric ./fabric &
      helm install inventory ./inventory &
      helm install search ./search
@@ -531,4 +532,4 @@ Creating fabric
 
 ## Conclusion
 
-This exercise was to help me scale up my project locally to get some timings and see if it was all working. This really helped me refresh stuff I forgot or didn't know. When I started scaling up, Argo crashed and could not deal with kind loads, so I would stick with not using Argo and just use k9s - less clumsy with load.
+This exercise was to help me scale up my project locally to get some timings and see if it was all working. This really helped me refresh stuff I forgot or didn't know. When I started scaling up, Argo crashed and could not deal with kind loads, so I would stick with not using Argo and just use k9s - less clumsy with load, however continue to look at scaling up kind, and this is all a different story.

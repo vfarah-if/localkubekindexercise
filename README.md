@@ -47,7 +47,7 @@ I have a Mac, but I am 99% sure everything works on other platforms, follow the 
 
 9. [tmux](https://github.com/tmux/tmux/wiki) is a terminal multiplexer. It lets you switch easily between several programs in one terminal, detach them (they keep running in the background) and reattach them to a different terminal.  
 
-## Exercises
+## Exercises (Hands on from zero to hero)
 
 ### 1. Setup kind to run nginx
 
@@ -69,7 +69,7 @@ By default, kind creates a **single-node cluster**, but you can modify your clus
 
 ### 4.1 Steps to Add Multiple Worker Nodes to a kind Cluster
 
-1. **Create or Edit Your Cluster Configuration** Create or edit your kind configuration file to define multiple worker nodes. You will define your cluster in a YAML file, specifying the number of worker nodes.
+1. **Create or Edit Your Cluster Configuration** Create or edit your kind configuration file to define multiple worker nodes. You will define your cluster in a [YAML file](kind-config.yaml), specifying the number of worker nodes.
 
    Example `kind-config.yaml`:
 
@@ -85,7 +85,7 @@ By default, kind creates a **single-node cluster**, but you can modify your clus
 
    **Create or Upgrade the Cluster** Use the kind CLI to create a new cluster or apply the configuration to your existing cluster. If you’re upgrading an existing cluster, you may want to delete the current one first, then recreate it with the new configuration.
 
-   - To **delete** and recreate the cluster:
+   - To **delete** and recreate the cluster (yes, start again 😊) :
 
      ```bash
      ❯ kind delete cluster
@@ -125,6 +125,8 @@ By default, kind creates a **single-node cluster**, but you can modify your clus
    To add more worker nodes, modify the config file again and recreate the cluster with `kind create cluster --config kind-config.yaml`.
 
    Finally, redo all the steps in 2 to 4, above just setting up Argo and the scaling as expected and see if the performance is as expected.
+   
+   ![Scaled and Happy Argo](./assets/argo-scaled.png)
 
 ## Kind vs Minikube
 
@@ -413,3 +415,4 @@ Here’s a comprehensive list of high-quality references and resources for learn
 
 ------
 
+Dedicated to **Aditya** in the open spirit of learning and sharing
