@@ -526,7 +526,7 @@ Creating fabric
      helm upgrade fabric ./fabric &
      helm upgrade inventory ./inventory &
      helm upgrade search ./search &
-     helm install teamdiscount ./teamdiscount
+     helm upgrade teamdiscount ./teamdiscount
      ```
   
   3. Use tools to make things easier for your self and try to simplify the process to one click if possible 
