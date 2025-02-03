@@ -4,7 +4,7 @@
 
 Local [Kubernete](https://kubernetes.io/) exercise for documenting and playing with [Helm](https://helm.sh/) locally.
 
-The purpose of this repo is to share some fantastic tools for playing with Kubernetes and Helm. I feel as a full stack developer that I don't get an excuse to play with this enough, to understand it like a devops engineer does. Recently that all changed as I had a reason to do this for setting up a local development project with lots  of scaled out microservices using scaling or *replicas*. My local environment was a docker setup and it only scaled to one solitary instance and possibly a manual second outside of docker. 
+The purpose of this repo is to share some fantastic tools for playing with Kubernetes and Helm. I feel as a full stack developer that I don't get an excuse to play with this enough inorder to understand it like a devops engineer does. Recently that all changed as I had a reason to do this for setting up a local development project with lots  of scaled out microservices, using scaling or *replicas*. My local environment was a docker setup and it only scaled to one solitary instance and possibly a manual second outside of docker. 
 
 So I discussed this with my lovely colleague, *Aditya Gundecha*, and he shared some lovely tools with all of us that I feel are a must have for any team wanting to get their hands dirty with Kubernetes locally, and other *devopsy* things. So this is a dedication to *Aditya*, who shared with me and now I want to pass on this with others in the open source spirit of learning.
 
@@ -15,7 +15,7 @@ I have a Mac, but I am 99% sure everything works on other platforms, follow the 
 ![Kube tools](assets/kubetools.png)
 
 1. [kind](https://sigs.k8s.io/kind) is a tool for running local Kubernetes clusters using Docker container “nodes”.
-   kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
+   Kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
 
    ```bash
    ❯ brew install kind
@@ -33,7 +33,7 @@ I have a Mac, but I am 99% sure everything works on other platforms, follow the 
 
 5. [Dotfiles](https://dotfiles.github.io/) is a devops helper site for programs that help with managing, syncing, and/or installing your dotfiles which ***Backup\***, ***restore\***, and ***sync\*** the prefs and settings for your toolbox. 
 
-6. [K9s](https://k9scli.io/) is a terminal based UI to interact with your Kubernetes clusters. The aim of this project is to make it easier to navigate, observe and manage your deployed applications in the wild. K9s continually watches Kubernetes for changes and offers subsequent commands to interact with your observed resources.
+   1. [K9s](https://k9scli.io/) is a terminal based UI to interact with your Kubernetes clusters. The aim of this project is to make it easier to navigate, observe and manage your deployed applications in the wild. K9s continually watches Kubernetes for changes and offers subsequent commands to interact with your observed resources. As  I was interacting with logs, pods, svc's, activating exndpoints and curling things, I realised that with this tool, many of those commands became unecessary.
 
    ```bash
    ❯ brew install derailed/k9s/k9s
@@ -41,11 +41,11 @@ I have a Mac, but I am 99% sure everything works on other platforms, follow the 
 
    ![k9 terminal in vscode](assets/k9-terminal.png)
 
-7. [Backstage](https://backstage.io/demos/) is an open source framework for building developer portals from *Spotify*.
+6. [Backstage](https://backstage.io/demos/) is an open source framework for building developer portals from *Spotify*.
 
-8. https://github.com/jesseduffield/lazygit speaks for itself.
+7. https://github.com/jesseduffield/lazygit speaks for itself.
 
-9. [tmux](https://github.com/tmux/tmux/wiki) is a terminal multiplexer. It lets you switch easily between several programs in one terminal, detach them (they keep running in the background) and reattach them to a different terminal.  
+8. [tmux](https://github.com/tmux/tmux/wiki) is a terminal multiplexer. It lets you switch easily between several programs in one terminal, detach them (they keep running in the background) and reattach them to a different terminal.  
 
 ## Exercises (Hands on from zero to hero)
 

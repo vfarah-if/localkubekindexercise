@@ -56,7 +56,7 @@
      Forwarding from [::1]:8000 -> 80
    ```
 
-7. **Browse** to this and remember as soon as you close that session, port forwading will dissapear
+7. **Browse** to this and remember as soon as you close that session, port forwarding will dissapear
 
    ![Port forwarded browser](assets/nginx-in-browser.png)
 

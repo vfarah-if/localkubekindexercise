@@ -11,4 +11,6 @@
 	✔ Scale it out and then fire the Service Bus to see if it will work @done(25-01-07 15:52)
 ✔ Add references for learning this, explore some videos and details for understanding how to expand on this @high @started(24-12-13 11:11) @done(25-01-07 15:52) @lasted(3w4d4h41m6s)
 ☐ Document how a single node kind cluster can be expanded with multiple nodes
-	☐ Create brew install kind	
+	✔ Create brew install kind @done(25-02-03 16:05)
+☐ Create a TeamDiscount helm placeholder for DCP
+	☐ Create this in Argo/K9's ready to go @started(25-02-03 16:07)

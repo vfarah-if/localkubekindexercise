@@ -509,7 +509,8 @@ Creating fabric
      
      kind load docker-image digital-dcp-integration-fabric.console:latest &
      kind load docker-image digital-dcp-integration-inventory.console:latest &
-     kind load docker-image digital-dcp-integration-search.console:latest
+     kind load docker-image digital-dcp-integration-search.console:latest &
+     kind load docker-image digital-dcp-integration-team.discount.console:latest
      ```
   
   2. Reinstall all the images
@@ -519,11 +520,13 @@ Creating fabric
      # If this is a clean setup...
      helm install fabric ./fabric &
      helm install inventory ./inventory &
-     helm install search ./search
+     helm install search ./search &
+     helm install teamdiscount ./teamdiscount
      or 
      helm upgrade fabric ./fabric &
      helm upgrade inventory ./inventory &
-     helm upgrade search ./search
+     helm upgrade search ./search &
+     helm install teamdiscount ./teamdiscount
      ```
   
   3. Use tools to make things easier for your self and try to simplify the process to one click if possible 
