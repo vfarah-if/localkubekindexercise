@@ -84,7 +84,7 @@ Creating fabric
         targetPort: 5001
   ```
 
-  and I extended my live probe and readiness to be based on a micriservice health endpoint
+  and I extended my live probe and readiness to be based on a microservice health endpoint
 
   ```yaml
   livenessProbe:

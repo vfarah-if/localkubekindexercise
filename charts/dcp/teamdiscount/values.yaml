@@ -7,14 +7,13 @@ replicaCount: 1
 
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
-  repository: digital-dcp-integration-team.discount.console
-  pullPolicy: IfNotPresent
+  repository: digital-dcp-integration-team.discount.console  
   tag: latest
+  pullPolicy: IfNotPresent
 
 env:
   HybrisBaseApiUrl: http://teamdiscount.default.svc.cluster.local
   HybrisBearerToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-
 
 # This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
@@ -90,14 +89,16 @@ resources: {}
   #   memory: 128Mi
 
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
-# livenessProbe:
-#   httpGet:
-#     path: /api/health
-#     port: 5005
-# readinessProbe:
-#   httpGet:
-#     path: /api/health
-#     port: 5005
+livenessProbe:
+  initialDelaySeconds: 60
+  httpGet:
+    path: /api/health
+    port: 5005
+readinessProbe:
+  initialDelaySeconds: 60
+  httpGet:
+    path: /api/health
+    port: 5005
 
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
